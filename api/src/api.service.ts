@@ -36,6 +36,11 @@ export class ApiService {
         nonOperationalDays: [1, 5, 4],
       },
     ];
-    return busRoutes[_.random(0, busRoutes.length - 1)];
-  }
+    const currentDay = busRoutes.filter((item)=>{
+      const d = new Date()
+      return ! item.nonOperationalDays.includes(d.getDay())
+  })
+  return currentDay[_.random(0, currentDay.length - 1)];
+ 
+}
 }
